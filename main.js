@@ -91,7 +91,7 @@ function moveSouth(){
 //This is what happens when you want the hoover to moveWest
 
 function moveWest(){
-  console.log(moveWest was called);
+  console.log('moveWest was called');
   switch (hoover.position){
 
     case 'W': hoover.position [0,0] = hoover.position
