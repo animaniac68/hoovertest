@@ -5,6 +5,11 @@ var hoover = {
   position: [0,0]
 };
 
+var dirt = {
+  position: [0,0]
+},
+
+
 console.log ('Your current position is: + hoover.position');
 console.log ('The number of dirt patches cleaned by hoover are: ');
 
@@ -22,7 +27,39 @@ function createGrid(columns,rows) {
 }
 //the dirty room has 5 columns and 5 rows
 var dirtyRoom = createGrid (5,5);
+
+//dirt placement
+
+
+var dirt =
+  dirtyRoom [1][1] = '#';
+  dirtyRoom [3][1] = '#';
+
+
+
+
 console.log (dirtyRoom);
+
+//this checks if there is  dirt at the location of the hoover and will clean the dirt if needed
+// function cleanPatch(delete dirt){
+// if (hoover.location === "#") {
+//   dirtyRoom.splice(i,1);
+//   break;
+// }
+// }
+
+// var dirtyRoom = [];
+// var index = dirtyRoom.indexOf('#');
+// if (index > -1) {
+//        arr.splice(index, 1);
+//      }
+
+dirtyRoom[hoover.position[0]][hoover.position[1]] = 'H';
+dirtRoom[dirt.position[0]][dirt.position[1]] = 'O';
+
+console.log('dirt removed at + hoover.location')
+var travelLog = [];
+
 
 //CONTROLLS
 //Now we need to make the hoover move by creating some controllers,
@@ -65,6 +102,8 @@ function moveNorth(){
     [0,1];
     break;
   }
+//insert dirt detector
+  console.log(hoover);
 }
 //This is what happens when you want the hoover to moveEast
 
@@ -77,6 +116,8 @@ function moveEast(){
     [1,0];
     break;
   }
+//insert dirt detector
+console.log(hoover);
 }
 //This is what happens when you want the hoover to moveSouth
 
@@ -87,6 +128,8 @@ function moveSouth(){
     [0,-1];
     break;
   }
+  //insert dirt detector
+  console.log(hoover);
 }
 
 //This is what happens when you want the hoover to moveWest
@@ -99,6 +142,8 @@ function moveWest(){
     [-1,0];
     break;
   }
+  //insert dirt detector
+  console.log(hoover);
 }
 
 //This code sets the location of the dirty patches
