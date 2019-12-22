@@ -53,20 +53,30 @@ switch (command [i]){
  }
 }
 
-//This is what happens when you want the hoover to moveNorth
+//This is what happens when you want the hoover to moveNorth,
 
 function moveNorth(){
   console.log('moveNorth was called');
 
-  swith (hoover.position) {
+  switch (hoover.position) {
 
     case 'N': hoover.position[0,0] = hoover.position
     [0,1];
     break;
+  }
+}
+//This is what happens when you want the hoover to moveEast
+
+function moveEast(){
+  console.log('moveEast was called');
+
+  switch (hoover.position) {
 
     case 'E': hoover.position[0,0]= hoover.position
     [1,0];
     break;
+  }
+}
 
     case 'S': hoover.position [0,0]= hoover.position
     [0,-1];
