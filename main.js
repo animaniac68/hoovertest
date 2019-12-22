@@ -6,7 +6,7 @@ var hoover = {
 };
 
 console.log ('Your current position is: + hoover.position');
-console.log ('The number of dirt patches cleaned by hoover is: ');
+console.log ('The number of dirt patches cleaned by hoover are: ');
 
 //GRID
 //This is the room as a grid rectangle where the hoover will do it's
@@ -101,6 +101,15 @@ function moveWest(){
   }
 }
 
+//This code sets the location of the dirty patches
+//this code helps the hoover to detect the dirt at a location
+
+var dirt = {
+  location: [0,0],
+}
+
+
+//This code logs the position of the HOOVER
 
 
 
