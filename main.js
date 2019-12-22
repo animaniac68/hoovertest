@@ -4,10 +4,10 @@
 var hoover = {
   position: [0,0]
 };
-
+//lets make some mess : DIRT
 var dirt = {
   position: [0,0]
-},
+};
 
 
 console.log ('Your current position is: + hoover.position');
@@ -22,6 +22,7 @@ function createGrid(columns,rows) {
   for (var i = 0; i< columns; i++) {
     grid [i] = new Array(rows);
 
+//grid = Array.from(grid, item => item | | 0);
   }
   return grid
 }
@@ -30,10 +31,10 @@ var dirtyRoom = createGrid (5,5);
 
 //dirt placement
 
-
-var dirt =
-  dirtyRoom [1][1] = '#';
-  dirtyRoom [3][1] = '#';
+//
+// var dirt =
+//   dirtyRoom [1][1] = '#';
+//   dirtyRoom [3][1] = '#';
 
 
 
@@ -41,23 +42,36 @@ var dirt =
 console.log (dirtyRoom);
 
 //this checks if there is  dirt at the location of the hoover and will clean the dirt if needed
-// function cleanPatch(delete dirt){
-// if (hoover.location === "#") {
+// function cleanPatch(hoover, dirt){
+// if (hoover.location === dirt.location) {
 //   dirtyRoom.splice(i,1);
 //   break;
 // }
 // }
 
 // var dirtyRoom = [];
-// var index = dirtyRoom.indexOf('#');
+// var index = dirtyRoom.indexOf('D');
 // if (index > -1) {
-//        arr.splice(index, 1);
+//        arr.splice(index, D);
 //      }
 
+//replaces a 'D' with a null if 'H' = 'D'
+function cleanPatch (dirt, hoover)
+if (hoover.location === dirt.location){
+var index = items.indexOf('D');
+id (index  !== -1){
+  items [index] = null
+}
+  return null
+}
+
+
 dirtyRoom[hoover.position[0]][hoover.position[1]] = 'H';
-dirtRoom[dirt.position[0]][dirt.position[1]] = 'O';
+dirtyRoom[dirt.position[0]][dirt.position[1]] = 'D';
 
 console.log('dirt removed at + hoover.location')
+
+
 var travelLog = [];
 
 
