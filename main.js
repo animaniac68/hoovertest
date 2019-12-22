@@ -77,10 +77,22 @@ function moveEast(){
     break;
   }
 }
+//This is what happens when you want the hoover to moveSouth
 
+function moveSouth(){
+  console.log(moveSouth was called);
+  switch (hoover.position){
     case 'S': hoover.position [0,0]= hoover.position
     [0,-1];
     break;
+  }
+}
+
+//This is what happens when you want the hoover to moveWest
+
+function moveWest(){
+  console.log(moveWest was called);
+  switch (hoover.position){
 
     case 'W': hoover.position [0,0] = hoover.position
     [-1,0];
