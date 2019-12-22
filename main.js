@@ -55,16 +55,15 @@ console.log (dirtyRoom);
 //        arr.splice(index, D);
 //      }
 
-//replaces a 'D' with a null if 'H' = 'D'
-function cleanPatch (dirt, hoover)
+//replaces a 'D' with a an empty item if 'H' = 'D'
+function cleanPatch (dirt.location, hoover.location)
 if (hoover.location === dirt.location){
 var index = items.indexOf('D');
 id (index  !== -1){
   items [index] = null
 }
-  return null
-}
 
+}
 
 dirtyRoom[hoover.position[0]][hoover.position[1]] = 'H';
 dirtyRoom[dirt.position[0]][dirt.position[1]] = 'D';
