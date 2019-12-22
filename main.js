@@ -7,14 +7,17 @@ var hoover = {
 
 console.log ('Your current position is: + hoover.position');
 
-//This is the room in a grid rectangle
-//lets create the room first
+//his is the room in a grid rectangle where the hoover will do it's 
+//life's sole purpose (to clean an imaginary room)
 
-function createMatrix(columns,rows) {
-  var matrix = [];
+function createGrid(columns,rows) {
+  var grid = [];
   for var i = 0; i< columns; i++) {
-    matrix [i] = new Array(rows);
+    grid [i] = new Array(rows);
 
   }
-  return matrix
+  return grid
 }
+//the dirty room has 5 columns and 5 rows.
+var dirtyRoom = createGrid (5,5);
+console.log (dirtyRoom);
