@@ -101,6 +101,7 @@ switch (command [i]){
 }
    console.log (hoover)
  }
+ RegisterTravelLogPosition();
 }
 
 //This is what happens when you want the hoover to moveNorth,
