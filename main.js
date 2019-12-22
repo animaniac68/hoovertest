@@ -1,10 +1,11 @@
 //This code navigates and imaginary hoover in an imaginary rectangle room
 
-//HOOVER
+//=====HOOVER========
 var hoover = {
-  position: [0,0]
+  position: [1,1]
 };
-//lets make some mess : DIRT
+//lets make some mess
+//=======DIRT=========
 var dirt = {
   position: [0,0]
 };
@@ -13,7 +14,7 @@ var dirt = {
 console.log ('Your current position is: + hoover.position');
 console.log ('The number of dirt patches cleaned by hoover are: ');
 
-//GRID
+//=========GRID=========
 //This is the room as a grid rectangle where the hoover will do it's
 //life's sole purpose (to clean an imaginary room)
 
@@ -37,8 +38,6 @@ var dirtyRoom = createGrid (5,5);
 //   dirtyRoom [3][1] = '#';
 
 
-
-
 console.log (dirtyRoom);
 
 //this checks if there is  dirt at the location of the hoover and will clean the dirt if needed
@@ -56,13 +55,13 @@ console.log (dirtyRoom);
 //      }
 
 //replaces a 'D' with a an empty item if 'H' = 'D'
-function cleanPatch (dirt.location, hoover.location)
+function cleanPatch (){
 if (hoover.location === dirt.location){
 var index = items.indexOf('D');
-id (index  !== -1){
+id (index  !== -1);
   items [index] = null
-}
 
+}
 }
 
 dirtyRoom[hoover.position[0]][hoover.position[1]] = 'H';
@@ -74,7 +73,7 @@ console.log('dirt removed at + hoover.location')
 var travelLog = [];
 
 
-//CONTROLLS
+//========CONTROLLS==============
 //Now we need to make the hoover move by creating some controllers,
 //the controllers will be cardinal (Naughty Elephants Squirt Water) ;-p
 //(I mean North East South West)
@@ -159,20 +158,20 @@ function moveWest(){
   console.log(hoover);
 }
 
-//This code sets the location of the dirty patches
-//this code helps the hoover to detect the dirt at a location
-
-var dirt = {
-  location: [0,0],
-}
 
 
 //This code logs the position of the HOOVER
-
+function travelLogPosition() {
+  travelLog.push(
+		'Hoover moved ' + command 'Hoover's new position is: ' + hoover.position
+	);
+}
 
 
 
 //TESTS
+console.log('test dirt location');
+
 console.log ('test controllers');
 commands('NNEEWS');
 console.log ('test dirt location')
