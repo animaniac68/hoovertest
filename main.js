@@ -6,6 +6,7 @@ var hoover = {
 };
 
 console.log ('Your current position is: + hoover.position');
+console.log ('dirt cleaned by hoover is: ')
 
 //GRID
 //This is the room as a grid rectangle where the hoover will do it's
@@ -99,3 +100,18 @@ function moveWest(){
     break;
   }
 }
+
+
+
+
+
+//TESTS
+console.log ('test controllers');
+commands('NNEEWS');
+
+console.log ('controller testing on grid')
+
+console.log (hoover);
+dirtyRoom[hoover.position[0,0]]= 'hoover'
+
+console.log(dirtyRoom);
