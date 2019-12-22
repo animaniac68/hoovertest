@@ -2,7 +2,7 @@
 
 //=====HOOVER========
 var hoover = {
-  position: [1,1]
+  position: [0,0]
 };
 //lets make some mess
 //=======DIRT=========
@@ -40,6 +40,8 @@ var dirtyRoom = createGrid (5,5);
 
 console.log (dirtyRoom);
 
+var travelLog = [];
+
 //this checks if there is  dirt at the location of the hoover and will clean the dirt if needed
 // function cleanPatch(hoover, dirt){
 // if (hoover.location === dirt.location) {
@@ -69,8 +71,6 @@ dirtyRoom[dirt.position[0]][dirt.position[1]] = 'D';
 
 console.log('dirt removed at + hoover.location')
 
-
-var travelLog = [];
 
 
 //========CONTROLLS==============
