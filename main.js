@@ -6,7 +6,7 @@ var hoover = {
 };
 
 console.log ('Your current position is: + hoover.position');
-console.log ('dirt cleaned by hoover is: ')
+console.log ('The number of dirt patches cleaned by hoover is: ');
 
 //GRID
 //This is the room as a grid rectangle where the hoover will do it's
@@ -14,13 +14,13 @@ console.log ('dirt cleaned by hoover is: ')
 
 function createGrid(columns,rows) {
   var grid = [];
-  for var i = 0; i< columns; i++) {
+  for (var i = 0; i< columns; i++) {
     grid [i] = new Array(rows);
 
   }
   return grid
 }
-//the dirty room has 5 columns and 5 rows.
+//the dirty room has 5 columns and 5 rows
 var dirtyRoom = createGrid (5,5);
 console.log (dirtyRoom);
 
@@ -30,7 +30,7 @@ console.log (dirtyRoom);
 //(I mean North East South West)
 
 function commands(command){
- for var i = 0; i < command.length; i++)
+ for (var i = 0; i < command.length; i++)
  {
 switch (command [i]){
 
@@ -42,11 +42,11 @@ switch (command [i]){
   moveEast();
   break;
 
-  case 'S';
+  case 'S':
   moveSouth();
   break;
 
-  case 'W';
+  case 'W':
   moveWest;
   break;
 }
@@ -81,7 +81,7 @@ function moveEast(){
 //This is what happens when you want the hoover to moveSouth
 
 function moveSouth(){
-  console.log(moveSouth was called);
+  console.log('moveSouth was called');
   switch (hoover.position){
     case 'S': hoover.position [0,0]= hoover.position
     [0,-1];
@@ -108,6 +108,7 @@ function moveWest(){
 //TESTS
 console.log ('test controllers');
 commands('NNEEWS');
+console.log ('test dirt location')
 
 console.log ('controller testing on grid')
 
