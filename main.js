@@ -1,18 +1,55 @@
 //This code navigates and imaginary hoover in an imaginary rectangle room
-
+var y = 0;
+var x = 0;
 //=====HOOVER========
 var hoover = {
-  position: [0,0]
+  position: [x,y]
 };
 //lets make some mess
 //=======DIRT=========
 var dirt = {
-  position: [0,0]
+  position: [x,y]
+
 };
+// var dirtContainer = {};
+// //which is basically the room
+// //dirt palcement (randomised)
+// function generateDirt(count)
+// {
+//   numberGenerator = function (max)
+//   {
+//     var num="";
+//     floatOut = Math.random() * ((max+1) - 1) +1;
+//      stringOut = floatOut.toString();
+//     for (i = 0; i < stringOut.length; i++) {
+//       if (stringOut[i] == ".") {
+//         break;
+//       }
+//     temp = parseInt(stringOut[i]);
+//     num += temp;
+//     return num;
+//     }
+//   }
+// dirtCount =
+// numberGenerator(count);
+// console.log("dirt count" + dirtCount);
+
+// for (n = 0; n<
+// dirtCount; n++) {
+//   dirtX = numberGenerator;
+//   dirtY = numberGenerator;
+//   dirtContainer[n] = (dirtX) + (dirtY);
+// }
+// }
+// generateDirt(2);
 
 
-console.log ('Your current position is: + hoover.position');
-console.log ('The number of dirt patches cleaned by hoover are: ');
+
+
+
+console.log ('Your current position is:' + hoover.position);
+console.log ('The number of dirt patches cleaned by hoover are: '
+ );
 
 //=========GRID=========
 //This is the room as a grid rectangle where the hoover will do it's
@@ -34,8 +71,8 @@ var dirtyRoom = createGrid (5,5);
 
 //
 // var dirt =
-//   dirtyRoom [1][1] = '#';
-//   dirtyRoom [3][1] = '#';
+//   dirtyRoom [1][1] = 'D';
+//   dirtyRoom [3][1] = 'D';
 
 
 console.log (dirtyRoom);
@@ -69,7 +106,7 @@ id (index  !== -1);
 dirtyRoom[hoover.position[0]][hoover.position[1]] = 'H';
 dirtyRoom[dirt.position[0]][dirt.position[1]] = 'D';
 
-console.log('dirt removed at + hoover.location')
+console.log('Dirt removed at: ' + dirt.position)
 
 
 
@@ -103,20 +140,22 @@ switch (command [i]){
  }
  RegisterTravelLogPosition();
 }
+var newHoover = {
+  position: [hoover.position] + commands
+}
+RegisterTravelLogPosition();
 
 //This is what happens when you want the hoover to moveNorth,
 
 function moveNorth(){
   console.log('moveNorth was called');
-
-  switch (hoover.position) {
-
-    case 'N': hoover.position[0,0] = hoover.position
-    [0,1];
-    break;
-  }
+//   {
+//  hoover.position[x,y] = hoover.position
+//     [x,y + 1];
+//     return newHoover.position;
+//   }
 //insert dirt detector
-  console.log(hoover);
+  console.log('new hoover position');
 }
 //This is what happens when you want the hoover to moveEast
 
@@ -162,20 +201,19 @@ function moveWest(){
 
 
 //This code logs the position of the HOOVER
-function travelLogPosition() {
+function RegisterTravelLogPosition() {
   travelLog.push(
-		'Hoover moved ' + command 'Hoover's new position is: ' + hoover.position
-	);
+		'Hoover moved ' + commands + 'Hoovers new position is: ' + newHoover.position)
 }
 
 
 
 //TESTS
-console.log('test dirt location');
+//console.log('test dirt location');
 
 console.log ('test controllers');
-commands('NNEEWS');
-console.log ('test dirt location')
+commands('NN');
+//console.log ('test dirt location')
 
 console.log ('controller testing on grid')
 
