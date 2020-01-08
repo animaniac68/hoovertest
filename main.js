@@ -1,223 +1,226 @@
-//This code navigates and imaginary hoover in an imaginary rectangle room
-var y = 0;
-var x = 0;
-//=====HOOVER========
+//This code allows the input.txt file to be read, each line is an element of the array readInput
+var fs = require('fs');
+var readInput = fs.readFileSync('input.txt', 'utf8').toString().split("\n");
+console.log('INPUT DATA');
+console.log(readInput)
+
+//read GRID dimensions
+
+var gridSize = readInput[0];
+console.log ('The input grid size is: ' + gridSize)
+
+
+console.log('=====================')
+//read HOOVER position
 var hoover = {
-  position: [x,y]
-};
-//lets make some mess
-//=======DIRT=========
-var dirt = {
-  position: [x,y]
+  position:readInput[1]}
+console.log ('The hoover is at start position: ' + hoover.position)
 
-};
-// var dirtContainer = {};
-// //which is basically the room
-// //dirt palcement (randomised)
-// function generateDirt(count)
-// {
-//   numberGenerator = function (max)
-//   {
-//     var num="";
-//     floatOut = Math.random() * ((max+1) - 1) +1;
-//      stringOut = floatOut.toString();
-//     for (i = 0; i < stringOut.length; i++) {
-//       if (stringOut[i] == ".") {
-//         break;
-//       }
-//     temp = parseInt(stringOut[i]);
-//     num += temp;
-//     return num;
-//     }
-//   }
-// dirtCount =
-// numberGenerator(count);
-// console.log("dirt count" + dirtCount);
+console.log('=====================')
 
-// for (n = 0; n<
-// dirtCount; n++) {
-//   dirtX = numberGenerator;
-//   dirtY = numberGenerator;
-//   dirtContainer[n] = (dirtX) + (dirtY);
-// }
-// }
-// generateDirt(2);
+//read DIRT position
+var dirt1 = readInput[2];
+var dirt2 = readInput[3];
+var dirt3 = readInput[4];
 
 
+console.log ('The dirt is at positions: ' + dirt1 +' , ' + dirt2 +' , '+ dirt3)
+//=================================
+console.log('=====================')
+console.log('CARDINAL INPUT:')
+//Cardinal Directions read from input
+var cardinalInput = readInput[5];
+console.log (cardinalInput)
 
+console.log('=======================')
 
+//==============================
+console.log('GRID:')
 
-console.log ('Your current position is:' + hoover.position);
-console.log ('The number of dirt patches cleaned by hoover are: '
- );
-
-//=========GRID=========
-//This is the room as a grid rectangle where the hoover will do it's
-//life's sole purpose (to clean an imaginary room)
-
-function createGrid(columns,rows) {
-  var grid = [];
-  for (var i = 0; i< columns; i++) {
-    grid [i] = new Array(rows);
-
-//grid = Array.from(grid, item => item | | 0);
-  }
-  return grid
+// CREATE Grid
+function createGrid(columns, rows) {
+	var grid = [];
+	for (var i = 0; i < columns; i++) {
+		grid [i] = new Array(rows);
+	}
+	return grid;
 }
-//the dirty room has 5 columns and 5 rows
-var dirtyRoom = createGrid (5,5);
 
-//dirt placement
+//TEST creating grid with elements in a similar format to input data
 
+var myGrid = [
+['1 5','2 5','3 5','4 5','5 5'],
+['1 4','2 4','3 4','4 4', '5 4'],
+['1 3','2 3','3 3','4 3', '5 3'],
+['1 2','2 2','3 2','4 2', '5 2'],
+['1 1','2 1','3 3','4 1', '5 1']];
+createGrid(5, 5);
+
+console.log(myGrid);
+console.log('=====================')
+
+//  lets  find the location of the Hoover index on myGrid, as the input data is a string that cannot be passed as int due to a blank space in between, we will use the hoover index to navigate around the grid and then call the element string value when the hoover moves.
 //
-// var dirt =
-//   dirtyRoom [1][1] = 'D';
-//   dirtyRoom [3][1] = 'D';
+function getIndexOfH(myGrid, hoover) {
+  for (var i = 0; i < myGrid.length; i++) {
+    var index = myGrid[i].indexOf(hoover);
+    if (index > -1) {
+      return [i, index];
+    }
+  }
+}
+//search the grid with the string input e.g. '1 3' location, then find the corresponding grid index.
+var hooverI = getIndexOfH(myGrid, hoover.position);
+//test get index of hoover
+console.log('The hoover ' + hoover.position + ' is located in myGrid array at ' + hooverI + '.' );
+
+//now do the same for the dirt
+// Find the location of the Dirt index on my grid
+//=========Dirt1
+function getIndexOfD1(myGrid, dirt1) {
+  for (var i = 0; i < myGrid.length; i++) {
+    var index = myGrid[i].indexOf(dirt1);
+    if (index > -1) {
+      return [i, index];
+    }
+  }
+}
+
+var dirt1L = getIndexOfD1(myGrid, dirt1);
+//test get index of dirt1
+console.log('The dirt ' + dirt1 + ' is located in myGrid array at ' + dirt1L + '.' );
+//==========Dirt 2
+function getIndexOfD2(myGrid, dirt2) {
+  for (var i = 0; i < myGrid.length; i++) {
+    var index = myGrid[i].indexOf(dirt2);
+    if (index > -1) {
+      return [i, index];
+    }
+  }
+}
+var dirt2L = getIndexOfD2(myGrid, dirt2);
+//test get index of dirt2
+console.log('The dirt ' + dirt2 + ' is located in myGrid array at ' + dirt2L + '.' );
+//=========Dirt 3
+function getIndexOfD3(myGrid, dirt3) {
+  for (var i = 0; i < myGrid.length; i++) {
+    var index = myGrid[i].indexOf(dirt3);
+    if (index > -1) {
+      return [i, index];
+    }
+  }
+}
+
+var dirt3L = getIndexOfD3(myGrid, dirt3);
+//test get index of dirt3
+console.log('The dirt ' + dirt3 + ' is located in myGrid array at ' + dirt3L + '.' );
 
 
-console.log (dirtyRoom);
-
+//=======================
 var travelLog = [];
+console.log('=====================')
 
-//this checks if there is  dirt at the location of the hoover and will clean the dirt if needed
-// function cleanPatch(hoover, dirt){
-// if (hoover.location === dirt.location) {
-//   dirtyRoom.splice(i,1);
-//   break;
-// }
-// }
+//movement of Hoover
 
-// var dirtyRoom = [];
-// var index = dirtyRoom.indexOf('D');
-// if (index > -1) {
-//        arr.splice(index, D);
-//      }
+//moveNorth
+function moveNorth() {
+	console.log('moveNorth was called');
+	switch (hooverI) {
+		case 'N':
+    	hooverI[1] = hooverI[1] + 1;
+      return newHooverI;
+			break;
+			}
+      RegisterTravelLogMovement();
 
-//replaces a 'D' with a an empty item if 'H' = 'D'
-function cleanPatch (){
-if (hoover.location === dirt.location){
-var index = items.indexOf('D');
-id (index  !== -1);
-  items [index] = null
-
+      console.log(hoover.position)
 }
+function moveSouth() {
+	console.log('moveSouth was called');
+
+	switch (hoover.position) {
+		case 'S':
+			hooverI[0][1] = hooverI[0]+1[1]
+      ;
+			break;}
+
+      RegisterTravelLogMovement();
+
+      console.log(hooverI)
+}
+function moveEast() {
+	console.log('moveEast was called');
+
+	switch (commands) {
+		case 'E':
+			hoover.position[0] = hoover.position[1]
+      + 1;
+			break;}
+      console.log(hoover)
+}
+function moveWest() {
+	console.log('moveWest was called');
+
+	switch (commands) {
+		case 'W':
+			hoover.position[0] = hoover.position[1]
+      - 1;
+			break;}
+      console.log(hoover)
 }
 
-dirtyRoom[hoover.position[0]][hoover.position[1]] = 'H';
-dirtyRoom[dirt.position[0]][dirt.position[1]] = 'D';
+function commands(command) {
+	for (var i = 0; i < command.length; i++) {
+		switch (command[i]) {
+			case 'N':
+				moveNorth();
+				break;
 
-console.log('Dirt removed at: ' + dirt.position)
+			case 'S':
+				moveSouth();
+				break;
 
+        case 'E':
+				moveEast();
+				break;
 
-
-//========CONTROLLS==============
-//Now we need to make the hoover move by creating some controllers,
-//the controllers will be cardinal (Naughty Elephants Squirt Water) ;-p
-//(I mean North East South West)
-
-function commands(command){
- for (var i = 0; i < command.length; i++)
- {
-switch (command [i]){
-
-  case 'N':
-  moveNorth();
-  break;
-
-  case 'E':
-  moveEast();
-  break;
-
-  case 'S':
-  moveSouth();
-  break;
-
-  case 'W':
-  moveWest;
-  break;
-}
-   console.log (hoover)
- }
- RegisterTravelLogPosition();
-}
-var newHoover = {
-  position: [hoover.position] + commands
-}
-RegisterTravelLogPosition();
-
-//This is what happens when you want the hoover to moveNorth,
-
-function moveNorth(){
-  console.log('moveNorth was called');
-//   {
-//  hoover.position[x,y] = hoover.position
-//     [x,y + 1];
-//     return newHoover.position;
-//   }
-//insert dirt detector
-  console.log('new hoover position');
-}
-//This is what happens when you want the hoover to moveEast
-
-function moveEast(){
-  console.log('moveEast was called');
-
-  switch (hoover.position) {
-
-    case 'E': hoover.position[0,0]= hoover.position
-    [1,0];
-    break;
+        case 'W':
+				moveWest();
+				break;
+    }
   }
-//insert dirt detector
-console.log(hoover);
 }
-//This is what happens when you want the hoover to moveSouth
+console.log('=====================')
 
-function moveSouth(){
-  console.log('moveSouth was called');
-  switch (hoover.position){
-    case 'S': hoover.position [0,0]= hoover.position
-    [0,-1];
-    break;
-  }
-  //insert dirt detector
-  console.log(hoover);
+
+function RegisterTravelLogMovement() {
+	travelLog.push(
+		'Hoover moved, Hoovers position is: ' + hooverI
+	);
 }
+//Commands Testing
+console.log('COMMANDS TESTING ON GRID');
+commands(cardinalInput);
 
-//This is what happens when you want the hoover to moveWest
+console.log('=================');
+//====================
+console.log('TRAVEL LOG');
 
-function moveWest(){
-  console.log('moveWest was called');
-  switch (hoover.position){
+console.log(travelLog);
+console.log('=================');
 
-    case 'W': hoover.position [0,0] = hoover.position
-    [-1,0];
-    break;
-  }
-  //insert dirt detector
-  console.log(hoover);
-}
+console.log('=================');
 
+//========================
+console.log('COMMANDS TESTING ON GRID');
 
+console.log(hooverI);
 
-//This code logs the position of the HOOVER
-function RegisterTravelLogPosition() {
-  travelLog.push(
-		'Hoover moved ' + commands + 'Hoovers new position is: ' + newHoover.position)
-}
+//place all objects on the grid
+myGrid[hooverI[0]][hooverI[1]] = 'H';
+myGrid[dirt1L[0]][dirt1L[1]] = 'D';
+myGrid[dirt2L[0]][dirt2L[1]] = 'D';
+myGrid[dirt3L[0]][dirt3L[1]] = 'D';
 
 
-
-//TESTS
-//console.log('test dirt location');
-
-console.log ('test controllers');
-commands('NN');
-//console.log ('test dirt location')
-
-console.log ('controller testing on grid')
-
-console.log (hoover);
-dirtyRoom[hoover.position[0,0]]= 'hoover'
-
-console.log(dirtyRoom);
+console.log(myGrid);
