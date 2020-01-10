@@ -184,28 +184,19 @@ console.log('=====================');
 //       console.log(hoover)
 // };
 
-function dirtbuster (hoover, dirt){
-if (hoover.position = indexvalueOf ('D')){
-for (var i = 0; i < myGrid.length; i++){
-if (myGrid[i] === 'D') {
-myGrid.splice(i, 1);
-i--;}
+
+function Stop(movement) {
+	if (hoover.position[0] < 0 || hoover.position[0] >= 10) {
+		console.log('Stop! your reached the border, you cannot move ' + movement);
+		hoover.position[0] = 0;
+	}
+	if (hoover.position[1] < 0) {
+		console.log('Stop! your reached the border, you cannot move ' + movement);
+		hoover.position[1] = 0;
+	} else {
+		RegisterTravelLogMovement();
+	}
 }
-}};
-
-
-// //function Stop(movement) {
-// 	if (hoover.position[0] < 0 || hoover.position[0] >= 10) {
-// 		console.log('Stop! your reached the border, you cannot move ' + movement);
-// 		hoover.position[0] = 0;
-// 	}
-// 	if (hoover.position[1] < 0) {
-// 		console.log('Stop! your reached the border, you cannot move ' + movement);
-// 		hoover.position[1] = 0;
-// 	} else {
-// 		RegisterTravelLogMovement();
-// 	}
-//}
 function commands(command) {
 	for (var i = 0; i < command.length; i++) {
 		switch (command[i]) {
@@ -214,6 +205,7 @@ function commands(command) {
       hoover.position[0] = hoover.position[0] + 1;
     console.log('moveNorth was called');
 RegisterTravelLogMovement();
+//Dirtbuster();
 			break;
 				//moveNorth();
 //MOVE SOUTH
@@ -221,6 +213,8 @@ RegisterTravelLogMovement();
       	hoover.position[0] = hoover.position [0]-1;
         console.log('movesSouth was called');
         RegisterTravelLogMovement();
+        //Dirtbuster();
+
 				//moveSouth();
 				break;
 //MOVE EAST
@@ -229,6 +223,8 @@ RegisterTravelLogMovement();
       + 1;
       console.log('moveEast was called');
         RegisterTravelLogMovement();
+        //Dirtbuster();
+
 				//moveEast();
 				break;
 //MOVE WEST
@@ -237,10 +233,12 @@ RegisterTravelLogMovement();
       - 1;
       console.log('moveWest was called');
        RegisterTravelLogMovement();
+       //Dirtbuster();
+
 				//moveWest();
 				break;
     }
-
+      Stop ();
 
       console.log(hoover)
   }
@@ -252,7 +250,25 @@ function RegisterTravelLogMovement() {
 	travelLog.push(
 		'Hoover moved, Hoovers position is: ' + hoover.position
 	);
+  //isThereDirtHere();
+ Dirtbuster();
 };
+
+var counter;
+counter = 0;
+//counter = ++counter;
+
+function Dirtbuster () {
+if (hoover.position[0] == dirt.a[0] && hoover.position[1]== dirt.a[1]){
+counter = counter + 1;
+//delete myGrid[dirt];
+//counter = counter + 1;
+console.log('dirt busted! Total busted: '+ counter);
+}}
+//console.log('dirt busted! Total busted: '+ counter)
+
+
+
 //Commands Testing
 console.log('COMMANDS TESTING ON GRID');
 console.log('=================');
@@ -271,7 +287,8 @@ console.log('=================');
 //========================
 console.log('COMMANDS TESTING ON GRID');
 
-console.log(hoover.position);
+console.log('final hoover position: ' + hoover.position);
+console.log('dirt busted: '+ counter);
 
 //place all objects on the grid
 myGrid[hoover.position[0]][hoover.position[1]] = 'H';
