@@ -1,3 +1,4 @@
+
 //This code allows the input.txt file to be read, each line is an element of the array readInput
 var fs = require('fs');
 var readInput = fs.readFileSync('input.txt', 'utf8').toString().split("\n");
