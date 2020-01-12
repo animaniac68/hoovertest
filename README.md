@@ -1,6 +1,7 @@
 # hoovertest
 This terminal program requires node.js installation
-please click on this link https://nodejs.org/en/download/ to download to your machine. You will need to download the repository to your machine in order to run it. 
+please click on this link https://nodejs.org/en/download/ to download node to your machine. 
+You will need to download this repository to your machine in order to run it. 
 On a Mac:
 Open Terminal, set the path to the folder using 'cd'.
 type:  node main.js 
