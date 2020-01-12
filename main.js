@@ -1,23 +1,23 @@
 //This code allows the input.txt file to be read, each line is an element of the array readInput
 var fs = require('fs');
 var readInput = fs.readFileSync('input.txt', 'utf8').toString().split("\n");
-//**TEST console.log('INPUT DATA');
 //**TEST console.log(readInput);
-//Read GRID dimensions
+
+//Read GRID dimensions from input.txt
 var gridSize = readInput[0].split(/[ , ]+/);
 //**TEST console.log ('The input grid size is: ' + gridSize);
-//Read HOOVER position
+//Read HOOVER position from input.txt
 var hoover = {
   position:readInput[1].split(/[ ,]+/).map(Number)};
 //**TEST console.log ('The hoover is at start position: ' + hoover.position);
-//Read DIRT position
+//Read DIRT position from input.txt
 var dirt = {
   a: readInput[2].split(/[ , ]+/),
   b: readInput[3].split(/[ , ]+/),
   c: readInput[4].split(/[ , ]+/)
 };
 //**TEST console.log ('The dirt is at positions: ' + dirt.a +' , ' + dirt.b +' , '+ dirt.c);
-//Cardinal Directions read from input
+//Cardinal Directions read from input.txt
 var cardinalInput = readInput[5];
 //**TEST console.log (cardinalInput);
 
@@ -37,7 +37,8 @@ var myGrid = createGrid(5,5);
 //This small piece of code logs the travel movements of the hoover.
 var travelLog = [];
 
-//************** MOVEMENT
+//************** MOVEMENT *****************
+
 //This code ensure that the hoover does not move out of the boundaries of the grid.
 //If the hoover moves outside the boundary, the position is reset to previous position.
 function Stop(movement) {
@@ -50,8 +51,7 @@ function Stop(movement) {
 		hoover.position[1] = 0;
 	} else {
 		RegisterTravelLogMovement();
-	}
-};
+	}};
 
 //This code moves the hoover around the grid
 function commands(command) {
@@ -60,37 +60,31 @@ function commands(command) {
 //MOVE NORTH
       case 'N':
       hoover.position[0] = hoover.position[0] + 1;
-//**TEST    console.log('moveNorth was called');
-RegisterTravelLogMovement();
+      //**TEST console.log('moveNorth was called');
+      RegisterTravelLogMovement();
 			break;
-
 //MOVE SOUTH
-			case 'S':
+			  case 'S':
       	hoover.position[0] = hoover.position [0]-1;
         //**TEST console.log('movesSouth was called');
         RegisterTravelLogMovement();
 				break;
-
 //MOVE EAST
         case 'E':
-        hoover.position[1] = hoover.position[1]
-      + 1;
-//**TEST      console.log('moveEast was called');
+        hoover.position[1] = hoover.position[1]+ 1;
+      //**TEST console.log('moveEast was called');
         RegisterTravelLogMovement();
 				break;
-
 //MOVE WEST
         case 'W':
-        	hoover.position[1] = hoover.position[1]
-      - 1;
-//**TEST      console.log('moveWest was called');
-       RegisterTravelLogMovement();
+        hoover.position[1] = hoover.position[1]- 1;
+      //**TEST console.log('moveWest was called');
+        RegisterTravelLogMovement();
 				break;
     }
       Stop ();
       //**TEST console.log(hoover)
-  }
-};
+  }};
 
 //This code gets the new position of the hoover
 function RegisterTravelLogMovement() {
@@ -107,8 +101,7 @@ function Dirtbuster () {
 if (hoover.position[0] == dirt.a[0] && hoover.position[1]== dirt.a[1]){
 counter = counter + 1;
 //**TEST console.log('dirt busted! Total busted: '+ counter);
-};
-};
+}};
 
 commands(cardinalInput);
 //**TEST console.log(travelLog);
@@ -120,7 +113,3 @@ console.log(hoover.position);
 //**** TOTAL NUMBER OF DIRT CLEANED ****
 console.log(counter);
 //=======================================
-
-
-
-//**TEST console.log(myGrid);
