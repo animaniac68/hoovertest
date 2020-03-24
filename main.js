@@ -10,26 +10,42 @@ var hoover = {
   position:readInput[1].split(/[ ,]+/).map(Number)};
 
 //Read DIRT position from input.txt
-var dirt = {
-  a: readInput[2].split(/[ , ]+/),
-  b: readInput[3].split(/[ , ]+/),
-  c: readInput[4].split(/[ , ]+/)
-};
+// var dirt = {
+//   a: readInput[2].split(/[ , ]+/),
+//   b: readInput[3].split(/[ , ]+/),
+//   c: readInput[4].split(/[ , ]+/)
+// };
+var dirt =
+  readInput.slice(2,-2);
+Array.from(dirt).toString().split(/[ , ]+/).map(Number);
+//Object.keys(dirt).map(key => { console.log(key, dirt[key]) })
 
-//Cardinal Directions read from input.txt
-var cardinalInput = readInput[5];
+//TEST
+console.log(dirt);
+//Cardinal Directions read from input.txt which will always be the last line
+//var cardinalInput = readInput[5];
+var cardinalInput = readInput.slice(-1)[0];
+//TEST
+console.log(cardinalInput);
 
+// var cardinalInput =  function(readInput, n) {
+//   if (readInput == null)
+//     return void 0;
+//   if (n == null)
+//      return readInput[readInput.length - 1];
+//   return readInput.slice(Math.max(readInput.length - n, 0));
+//   };
 //Now lets create the dirty room (grid) for our hoover to roam around in and clean up.
 // CREATE Grid
-function createGrid(columns, rows) {
+function createGrid(rows, columns) {
 	var grid = [];
-	for (var i = 0; i < columns; i++) {
-		grid [i] = new Array(rows);
+	for (var i = 0; i < rows; i++) {
+		grid [i] = new Array(columns);
 	}
 	return grid;
 };
 
-var myGrid = createGrid(5,5);
+var myGrid = createGrid(gridSize);
 
 //This small piece of code logs the travel movements of the hoover.
 var travelLog = [];
