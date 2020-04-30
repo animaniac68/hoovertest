@@ -10,14 +10,17 @@ var hoover = {
   position:readInput[1].split(/[ ,]+/).map(Number)};
 
 //Read DIRT position from input.txt
-var dirt = {
-  a: readInput[2].split(/[ , ]+/),
-  b: readInput[3].split(/[ , ]+/),
-  c: readInput[4].split(/[ , ]+/)
-};
+// var dirt = {
+//   a: readInput[2].split(/[ , ]+/),
+//   b: readInput[3].split(/[ , ]+/),
+//   c: readInput[4].split(/[ , ]+/)
+// };
+var dirt =
+  readInput.slice(2,-1).toString().replace(/\s/g, ',');
 
 //Cardinal Directions read from input.txt
-var cardinalInput = readInput[5];
+//var cardinalInput = readInput[5];
+var cardinalInput = readInput.slice(-1)[0];
 
 //Now lets create the dirty room (grid) for our hoover to roam around in and clean up.
 // CREATE Grid
@@ -54,12 +57,12 @@ function commands(command) {
 		switch (command[i]) {
 //MOVE NORTH
       case 'N':
-      hoover.position[0] = hoover.position[0] + 1;
+      hoover.position[0] = hoover.position[0] - 1;
       RegisterTravelLogMovement();
 			break;
 //MOVE SOUTH
 			  case 'S':
-      	hoover.position[0] = hoover.position [0]-1;
+      	hoover.position[0] = hoover.position [0]+1;
         RegisterTravelLogMovement();
 				break;
 //MOVE EAST
@@ -101,3 +104,10 @@ console.log(hoover.position);
 //**** TOTAL NUMBER OF DIRT CLEANED ****
 console.log(counter);
 //=======================================
+//*********** TESTS*******************
+console.log('TESTS');
+console.log('=================');
+console.log('INPUT DATA');
+console.log(readInput);
+console.log('=================');
+console.log ('The dirt is at positions: ' + dirt.a +' , ' + dirt.b +' , '+ dirt.c);
